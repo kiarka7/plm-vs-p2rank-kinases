@@ -14,15 +14,6 @@ residue-level binding-site prediction across kinase families.
   - computation of micro/macro metrics,
   - generation of all figures reported in the manuscript.
 
-- `figures/`  
-  Exported bar plots, ROC and PR overlays.
-
-- `env/`  
-  Environment specifications (`requirements.txt`).
-
-- `model/`  
-  Placeholder for the fine-tuned PLM checkpoint (not included in the public repo).
-
 ## Reproducibility
 
 All evaluations were performed per structure–chain key and aligned by numeric
