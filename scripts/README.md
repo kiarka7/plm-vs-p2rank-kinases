@@ -289,7 +289,9 @@ Scripts in this section are intended for debugging, sanity checks, and manual in
 of individual structures. Diagnostic scripts are located in the `diagnostics/` folder:
 
  `diagnostics/inspect_alignment_for_pdb.py`
+ 
  `diagnostics/inspect_alignment_for_pdb_run.sh`
+ 
  `diagnostics/inspect_in_pymol.pml`
 
 ### `diagnostics/inspect_alignment_for_pdb.py`
@@ -307,7 +309,7 @@ using different colors (GOLD = red, P2Rank = cyan, PLM = yellow).
 Run from the project root using:
 ```console
 pymol diagnostics/inspect_in_pymol.pml
-
+```
 
 ## Notes
 
