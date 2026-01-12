@@ -39,7 +39,6 @@ Additional control and diagnostic scripts are included for validation and auditi
 
 See `scripts/README.md` for a detailed description.
 
-----
 ### data/
 
 Each dataset is stored in a separate folder, e.g.:
