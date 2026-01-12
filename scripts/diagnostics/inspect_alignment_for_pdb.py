@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 """
-99.inspect_alignment_for_pdb.py
+inspect_alignment_for_pdb.py
 
-Goal
-----
 Quick sanity check that GOLD, P2Rank and PLM are aligned and consistent
 for a single PDB across chains.
 
@@ -31,7 +29,7 @@ Usage
 -----
 Example:
 
-  python 99.inspect_alignment_for_pdb.py \
+  python inspect_alignment_for_pdb.py \
       --folder Kinase_Type_I \
       --pdb 4CZT \
       --plm-thr 0.75 \
