@@ -5,7 +5,7 @@
 Export P2Rank per-residue predictions with GOLD-ordered output and
 an extra "best pocket" selection per (pdb, chain).
 
-Key points (pipeline-friendly):
+Key points:
 - Output records are in GOLD order (same (pdb,chain) sequence as GOLD).
 - Residue arrays (sequence_residue_numbers, pred_probs, labels, residue_pocket_ids)
   are aligned to GOLD's canonical author numbering for that (pdb,chain).
