@@ -51,14 +51,14 @@ Each dataset is stored in a separate folder, e.g.:
 Expected essential files per dataset include:
 - `Kinase_Ligands_*.xlsx` (source tables; original KinCoRe / KinCoRe-UNQ exports)
 - `structures/*.cif` (downloaded on demand from RCSB PDB; not part of the archive)
-- `01.chain_gold_labels_CLEAN.json` (ground-truth residue labels derived from ligand annotations)
+- `01.chain_gold_labels.json` (ground-truth residue labels derived from ligand annotations)
 - `p2rank_predictions/*_predictions.csv` (raw P2Rank outputs)
 - `02.chain_p2rank_labels.json` (processed P2Rank outputs aligned to residue indices)
 - `02.p2rank_rank1_map.json` (rank-1 P2Rank pocket mapping)
-- `03.plm_predictions_CLEAN.json` (PLM raw probability outputs)
+- `03.plm_predictions.json` (PLM raw probability outputs)
 - `03.chain_plm_labels.json` (PLM residue-level predictions aligned to residue indices)
-- `04.eval_all_in_one_CLEAN.json` (main evaluation results)
-- `04.p2rank_oracle_chain_details_CLEAN.json` (oracle evaluation details)
+- `04.eval_all_in_one.json` (main evaluation results)
+- `04.p2rank_oracle_chain_details.json` (oracle evaluation details)
 
 Generated reports and figures are stored in:
 `_combined_final_CLEAN/`
