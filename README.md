@@ -37,6 +37,8 @@ Python scripts implementing the full analysis pipeline:
 Scripts operate per `(PDB ID, chain ID)` and align predictions using numeric residue indices.
 Additional control and diagnostic scripts are included for validation and auditing purposes.
 
+See `scripts/README.md` for a detailed description.
+
 ----
 ### data/
 
@@ -62,8 +64,6 @@ Expected essential files per dataset include:
 
 Generated reports and figures are stored in:
 `_combined_final_CLEAN/`
-
-See `scripts/README.md` for a detailed description.
 
 ### Expected directory layout
 
