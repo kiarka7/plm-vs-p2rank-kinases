@@ -63,7 +63,7 @@ Expected essential files per dataset include:
 Generated reports and figures are stored in:
 `_combined_final_CLEAN/` (generated)
 
-See `docs/DATA_LAYOUT.md` for a detailed description.
+See `scripts/README.md` for a detailed description.
 
 
 ## 3. Pipeline (quick run)
