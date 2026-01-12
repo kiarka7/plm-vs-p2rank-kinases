@@ -282,6 +282,15 @@ particular MCC and AUPR, and highlights the strong class imbalance typical for
 residue-level binding-site prediction tasks.
 
 ---
+## Auxiliary scripts (tables for SI)
+---
+Script is located in the `si_helpers/` folder: `si_helpers/select_one_structure_per_protein.py`
+
+### `si_helpers/select_one_structure_per_protein.py`
+Utility script used to create a **1 protein = 1 structure** subset of the input table
+(e.g., for Supporting Information). The script groups entries by `UniprotID` and keeps
+a single representative structure per protein (by default preferring lower `Resolution`
+when available; ties are broken by `PDB`).
 
 ## Diagnostic and auxiliary scripts
 
