@@ -2,9 +2,9 @@
 
 Due to size limitations of GitHub, not outputs used in this study are stored directly in this repository.
 
-## Full datasets
-
-The complete datasets, including:
+---
+### Datasets
+The datasets, including:
 - residue-level GOLD annotations,
 - processed P2Rank outputs,
 - PLM raw predictions,
@@ -17,7 +17,28 @@ are available via institutional data storage at:
 
 (access provided for review and archival purposes)
 
-## Long-term availability
+### Dataset variants
 
-A curated and permanent archive of all data and scripts will be deposited on **Zenodo** upon manuscript submission.
-The Zenodo DOI will be added here and referenced in the manuscript.
+Two dataset variants are used throughout the analysis:
+
+- **`KinCoRe/`**
+  The full dataset, containing all available protein–ligand complexes
+  for each kinase type.
+
+- **`KinCoRe-UNQ/`**
+  A reduced dataset in which only **one representative structure per protein**
+  (UniProt ID) is retained (Supporting Information tables).
+
+Both dataset variants share the same internal structure and differ only
+in the set of included structures.
+
+### Scripts and reproducibility
+
+All scripts provided in the `scripts/` directory operate directly on
+the dataset folders (`Kinase_Type_I/`, `Kinase_Type_I.5/`,...).
+
+The only external input required to regenerate the datasets is the
+**original Excel table** listing protein–ligand structures.
+All subsequent processing steps (filtering, prediction mapping,
+evaluation, and reporting) are fully scripted and reproducible.
+
