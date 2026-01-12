@@ -8,7 +8,7 @@ This project compares residue-level binding-site predictions produced by: a fine
 
 The fine-tuned PLM model can be downloaded from this data storage: https://owncloud.cesnet.cz/index.php/s/8RSJqt60D2uWJNa. The code and dataset related to PLM are available in GitHub repository: https://github.com/skrhakv/LBS-pLM.
 
-Inference was performed using custom Python scripts that wrap the fine-tuned ESM2 checkpoint and implement residue extraction, tokenization, batching, and model evaluation. All scripts required to reproduce the PLM predictions reported in our study are publicly available in GitHub repository (https://github.com/kiarka7/plm-vs-p2rank-kinases).
+All scripts required to reproduce the P2Rank and PLM predictions reported in our study are publicly available here, in GitHub repository (https://github.com/kiarka7/plm-vs-p2rank-kinases).
 
 The analysis focuses on reproducibility and fair evaluation across protein–ligand complexes. 
 
