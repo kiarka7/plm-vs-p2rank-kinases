@@ -1,60 +1,76 @@
 # PLM vs P2Rank on Kinase Binding Sites
 
-This repository and accompanying Zenodo archive provide data and scripts used in the study: Protein Language Models and Structure-Based Machine Learning for Prediction of Allosteric Binding Sites in Protein Kinases
+This repository and the accompanying Zenodo archive provide data and scripts used in the study:
+
+**Protein Language Models and Structure-Based Machine Learning for Prediction of Allosteric Binding Sites in Protein Kinases: An Explainable AI Framework Guided by Energy Landscape–Derived Frustration**
+
+---
 
 ## 1. Overview
 
-This project compares residue-level binding-site predictions produced by: a fine-tuned Protein Language Model (PLM) and the structure-based pocket prediction method P2Rank (version 2.5), across multiple kinase datasets (Type I, I.5, II, III, and Allosteric).
+This project compares residue-level binding-site predictions produced by: a fine-tuned Protein Language Model (PLM), and the structure-based pocket prediction method **P2Rank** (version 2.5), across multiple kinase datasets (Type I, I.5, II, III, and Allosteric).
 
-The fine-tuned PLM model can be downloaded from this data storage: https://owncloud.cesnet.cz/index.php/s/8RSJqt60D2uWJNa. The code and dataset related to PLM are available in GitHub repository: https://github.com/skrhakv/LBS-pLM.
+The fine-tuned PLM model can be downloaded from this data storage: https://owncloud.cesnet.cz/index.php/s/8RSJqt60D2uWJNa
 
-All scripts required to reproduce the P2Rank and PLM predictions reported in our study are publicly available here, in GitHub repository (https://github.com/kiarka7/plm-vs-p2rank-kinases).
+ The code and datasets related to this PLM are available at: https://github.com/skrhakv/LBS-pLM
 
-The analysis focuses on reproducibility and fair evaluation across protein–ligand complexes. 
+All scripts required to reproduce both PLM and P2Rank predictions reported in this study are publicly available in this repository:
+https://github.com/kiarka7/plm-vs-p2rank-kinases
 
-## 2. Repository 
+The analysis emphasizes reproducibility and fair evaluation across protein–ligand complexes.
+
+----
+
+## 2. Repository Structure
 ### scripts/
 
 Python scripts implementing the full analysis pipeline:
 
-- `00.*` – dowload structures from .xlsx input table in .cif
+- `00.*` – download of structures in .cif format from `.xlsx` input tables 
 - `01.*` – construction of GOLD (ground-truth) residue labels
-- `02.*` – P2Rank predictions
-- `03.*` – PLM predictions
+- `02.*` – P2Rank predictions and post-processing
+- `03.*` – PLM predictions and post-processing
 - `04.*` – evaluation (micro/macro metrics, MCC, AUROC, AUPR)
-- `05.*` – figure, report generation
-- `06.*` – prevalence calculations
+- `05.*` – figures and report generation
+- `06.*` – class prevalence (class imbalance) calculations
 
-Scripts are designed to operate per (PDB ID, chain ID) and align predictions using numeric residue indices. In addition to the necessary scripts, additional - control scripts are also uploaded here.
+Scripts operate per `(PDB ID, chain ID)` and align predictions using numeric residue indices.
+Additional control and diagnostic scripts are included for validation and auditing purposes.
 
+----
 ### data/
 
-Each dataset lives in its own folder, e.g.:
+Each dataset is stored in a separate folder, e.g.:
+
 - `Kinase_Type_I/`
+- `Kinase_Type_I.5/`
 - `Kinase_Type_II/`
 - `Kinase_Type_III/`
 - `Kinase_Type_ALLO/`
-- `Kinase_Type_I.5/`
 
-Expected essential files per dataset:
-- `Kinase_Ligands_*.xlsx` (source table; original KinCoRe / KinCoRe-UNQ export)
+Expected essential files per dataset include:
+- `Kinase_Ligands_*.xlsx` (source tables; original KinCoRe / KinCoRe-UNQ exports)
 - `structures/*.cif` (generated)
-- `01.chain_gold_labels_CLEAN.json` (generated; ground-truth residue labels derived from ligand annotations.)
-- `p2rank_predictions/*_predictions.csv` (generated)
-- `02.chain_p2rank_labels.json` (generated; processed P2Rank outputs aligned to residue indices.)
-- `02.p2rank_rank1_map.json` (generated; processed P2Rank outputs aligned to residue indices.)
-- `03.plm_predictions_CLEAN.json` (generated)
-- `03.chain_plm_labels.json` (generated; PLM residue-level prediction outputs aligned to residue indices.)
-- `04.eval_all_in_one_CLEAN.json` (generated; main evaluation)
-- `04.p2rank_oracle_chain_details_CLEAN.json` (generated)
+- `01.chain_gold_labels_CLEAN.json` (generated; ground-truth residue labels derived from ligand annotations)
+- `p2rank_predictions/*_predictions.csv` (generated; raw P2Rank outputs)
+- `02.chain_p2rank_labels.json` (generated; processed P2Rank outputs aligned to residue indices)
+- `02.p2rank_rank1_map.json` (generated; rank-1 P2Rank pocket mapping)
+- `03.plm_predictions_CLEAN.json` (generated; PLM raw probability outputs)
+- `03.chain_plm_labels.json` (generated; PLM residue-level predictions aligned to residue indices)
+- `04.eval_all_in_one_CLEAN.json` (generated; main evaluation results)
+- `04.p2rank_oracle_chain_details_CLEAN.json` (generated; oracle evaluation details)
 
-Reports and figures under in folder above: `_combined_final_CLEAN/` (generated)
+Generated reports and figures are stored in:
+`_combined_final_CLEAN/` (generated)
 
-See `docs/DATA_LAYOUT.md` for details.
+See `docs/DATA_LAYOUT.md` for a detailed description.
+
 
 ## 3. Pipeline (quick run)
 
-Run per dataset (eg. Kinase_Type_I; you need to change the name for the dataset ussually in the script before run):
+The pipeline is executed **per dataset** (e.g. `Kinase_Type_I`). Dataset names are specified directly in individual scripts where required.
+
+Typical execution order:
 
 ```console
 bash 00.1_download_structures_run.sh 
@@ -118,18 +134,30 @@ python 06.0_prevalence.py
 
 ## 4. Leakage Control and Evaluation Policy
 
-Sequence similarity control was applied before evaluation (structures with > 30% were removed from the PLM train set). Evaluation in publication is performed per structure–chain (original KinCoRe). Only one structure per protein was used in controlled analyses (KinCoRe-UNQ export).
+Sequence similarity control was applied prior to evaluation. Structures with >30% sequence identity to the PLM training set were excluded.
+All evaluations reported in the manuscript are performed at the structure–chain level using the original KinCoRe annotations. 
+For controlled analyses, only one structure per protein was retained
+(KinCoRe-UNQ export).
 
 ## 5. Reproducibility
 
 To reproduce the reported results:
 
--Use the dataset folders with input excel tables.
+Use the provided dataset folders with the original input Excel tables.
 
--Run scripts in numerical order (01 → 06).
+Run scripts in numerical order (01 → 06).
 
--Metrics and figures reported in the manuscript correspond directly to outputs of: 04.eval_all_in_one_CLEAN.json; figures generated by 05.report_from_evaljsons_plus_curves.py
+Metrics and figures reported in the manuscript correspond directly to: 
+
+- 04.eval_all_in_one.json
+
+- figures generated by 05.report_from_evaljsons_plus_curves.py
 
 ## 6. Notes
 
-AUROC and AUPR are computed from raw probability scores, independent of threshold selection. Fixed and best-MCC operating points are described in the manuscript Methods section. Class prevalence reflects residue-level annotations across all protein–ligand complexes; prevalence for unique proteins was performed in controlled analyses.
+AUROC and AUPR are computed from raw probability scores and are independent of threshold selection.
+
+Fixed-threshold and best-MCC operating points are described in the manuscript Methods section.
+
+Class prevalence reflects residue-level annotations aggregated across all protein–ligand complexes.
+Prevalence for unique proteins is reported only for controlled analyses.
