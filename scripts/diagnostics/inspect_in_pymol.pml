@@ -1,7 +1,6 @@
-# 99.inspect_in_pymol.pml
+# inspect_in_pymol.pml
 #
 # Visual inspection of GOLD vs P2Rank vs PLM for a single PDB.
-#
 # CONFIG: change these three lines before running:
 
 python
