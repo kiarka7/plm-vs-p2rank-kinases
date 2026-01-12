@@ -29,7 +29,7 @@ def parse_args():
     p.add_argument(
         "--excel",
         required=True,
-        help="Path to Excel file (e.g. Kinase_Type_III/Kinase_Ligands_Type III.xlsx)",
+        help="Path to Excel file (e.g. Kinase_Type_I/Kinase_Ligands_Type I.xlsx)",
     )
     p.add_argument(
         "--sheet",
@@ -43,7 +43,7 @@ def parse_args():
     p.add_argument(
         "--out-dir",
         required=True,
-        help="Directory where .cif files will be saved (e.g. Kinase_Type_III/structures)",
+        help="Directory where .cif files will be saved (e.g. Kinase_Type_I/structures)",
     )
     p.add_argument(
         "--force",
@@ -104,10 +104,8 @@ def download_cif_once(pdb: str, out_path: str, timeout: int = 30) -> bool:
             print(f"[!] HTTP {r.status_code} for {pdb}")
             return False
         content = r.text
-        # Basic sanity check: extremely malé soubory mohou být chybová stránka
         if len(content) < 500:
             print(f"[!] Downloaded file for {pdb} is very small (len={len(content)}), may be invalid")
-            # zapíšeme ho stejně, ale vrátíme False, aby se dal ještě jednou zkusit
             with open(out_path, "w") as f:
                 f.write(content)
             return False
@@ -130,7 +128,6 @@ def download_cif_with_retries(pdb: str, out_path: str, retries: int, timeout: in
         if ok:
             return True
         if attempt < retries:
-            # krátká pauza před dalším pokusem
             print(f"[i] Retry {attempt}/{retries} failed for {pdb}, waiting a bit before next attempt...")
             time.sleep(3)
     return False
@@ -150,7 +147,6 @@ def main():
     for pdb in pdb_ids:
         out_path = os.path.join(args.out_dir, f"{pdb.lower()}.cif")
 
-        # pokud soubor existuje a nepoužíváme --force, přeskočíme
         if os.path.isfile(out_path) and not args.force:
             print(f"[skip] {pdb.lower()}.cif already exists")
             n_skip += 1
@@ -161,7 +157,6 @@ def main():
             n_dl += 1
         else:
             n_fail += 1
-            # pokud se něco zapsalo, ale bylo to moc malé / chybové, je možná lepší to smazat
             if os.path.isfile(out_path) and os.path.getsize(out_path) < 500:
                 print(f"[i] Removing suspicious small file {out_path}")
                 try:
