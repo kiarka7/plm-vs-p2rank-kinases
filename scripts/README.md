@@ -308,7 +308,7 @@ using different colors (GOLD = red, P2Rank = cyan, PLM = yellow).
 
 Run from the project root using:
 ```console
-pymol diagnostics/inspect_in_pymol.pml
+pymol inspect_in_pymol.pml
 ```
 
 ## Notes
