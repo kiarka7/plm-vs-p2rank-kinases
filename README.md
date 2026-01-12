@@ -1,7 +1,5 @@
 # PLM vs P2Rank on Kinase Binding Sites
 
-## Data, Code, and Reproducibility Guide
-
 This repository and accompanying Zenodo archive provide data and scripts used in the study: Protein Language Models and Structure-Based Machine Learning for Prediction of Allosteric Binding Sites in Protein Kinases
 
 ## 1. Overview
