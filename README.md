@@ -91,7 +91,7 @@ plm-vs-p2rank-kinases/
 Scripts reference dataset folders using **relative paths** (e.g. `Kinase_Type_I/`)
 and therefore require this directory structure to be preserved. Running scripts from a different working directory is not supported unless paths inside the scripts are adjusted accordingly.
 
-### 3. Pipeline (quick run)
+### Pipeline (quick run)
 
 The pipeline is executed **per dataset** (e.g. `Kinase_Type_I`). Dataset names are specified directly in individual scripts where required.
 
@@ -157,14 +157,14 @@ bash 05.report_from_evaljson_plus_curves_run.sh
 python 06.0_prevalence.py
 ```
 
-## 4. Leakage Control and Evaluation Policy
+## 3. Leakage Control and Evaluation Policy
 
 Sequence similarity control was applied prior to evaluation. Structures with >30% sequence identity to the PLM training set were excluded.
 All evaluations reported in the manuscript are performed at the structure–chain level using the original KinCoRe annotations. 
 For controlled analyses, only one structure per protein was retained
 (KinCoRe-UNQ export).
 
-## 5. Reproducibility
+## 4. Reproducibility
 
 To reproduce the reported results:
 
@@ -181,7 +181,7 @@ Metrics and figures reported in the manuscript correspond directly to:
 Structure files are not archived to avoid data duplication;
 all required structures can be retrieved programmatically using the provided scripts.
 
-## 6. Notes
+## 5. Notes
 
 AUROC and AUPR are computed from raw probability scores and are independent of threshold selection.
 
