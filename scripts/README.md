@@ -283,6 +283,32 @@ residue-level binding-site prediction tasks.
 
 ---
 
+## Diagnostic and auxiliary scripts
+
+Scripts in this section are intended for debugging, sanity checks, and manual inspection
+of individual structures. Diagnostic scripts are located in the `diagnostics/` folder:
+
+ `diagnostics/inspect_alignment_for_pdb.py`
+ `diagnostics/inspect_alignment_for_pdb_run.sh`
+ `diagnostics/inspect_in_pymol.pml`
+
+### `diagnostics/inspect_alignment_for_pdb.py`
+Sanity-check alignment for a single PDB across all chains present in GOLD.  
+For each chain it verifies that GOLD / P2Rank / PLM use the same `sequence_residue_numbers` (author residue numbering), reports length/position mismatches, and summarizes overlaps (counts + Jaccard) between GOLD positives, P2Rank positives, and PLM positives (at given thresholds).  
+
+### `diagnostics/inspect_alignment_for_pdb_run.sh`
+Convenience wrapper to run `inspect_alignment_for_pdb.py` for a chosen dataset folder and PDB ID with predefined thresholds and an optional CSV output path.
+
+### `diagnostics/inspect_in_pymol.pml`
+PyMOL script for manual visual inspection of a single structure.
+Loads the mmCIF structure and highlights GOLD, P2Rank, and PLM positive residues
+using different colors (GOLD = red, P2Rank = cyan, PLM = yellow).
+
+Run from the project root using:
+```console
+pymol diagnostics/inspect_in_pymol.pml
+
+
 ## Notes
 
 - Scripts are designed to be run sequentially but are modular.
