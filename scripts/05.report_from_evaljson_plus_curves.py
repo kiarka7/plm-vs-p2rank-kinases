@@ -54,9 +54,9 @@ from sklearn.metrics import (
 # File names
 # ------------------------------------------------------------
 
-EVAL_FILE = "04.eval_all_in_one_CLEAN.json"
-GOLD_FILE = "01.chain_gold_labels_CLEAN.json"
-PRED_FILE = "03.plm_predictions_CLEAN.json"
+EVAL_FILE = "04.eval_all_in_one.json"
+GOLD_FILE = "01.chain_gold_labels.json"
+PRED_FILE = "03.plm_predictions.json"
 
 # ------------------------------------------------------------
 # Visual style / aesthetics
