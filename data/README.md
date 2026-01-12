@@ -42,21 +42,14 @@ The only external input required to regenerate the datasets is the
 All subsequent processing steps (filtering, prediction mapping,
 evaluation, and reporting) are fully scripted and reproducible.
 
-
-### Report and figures
-
-The directory `_combined_final_CLEAN/`  contains aggregated figures and
+The directory `_combined_final_CLEAN/`  (in the sharepoint link) contains aggregated figures and
 reports generated from the evaluation outputs.
 
-### Protein structures
-
-Atomic protein structures (.cif files) are not included in this archive. 
+Atomic protein structures (.cif files) are not included in the sharepoint link. 
 All structures are publicly available from the RCSB Protein Data Bank and can be automatically downloaded using the provided script:
 
 ```console
 bash 00.1_download_structures_run.sh
 ```
-
-### Notes
 
 Diagnostic and inspection scripts are documented in the GitHub repository. Their outputs are included in the sharepoint link when relevant for evaluation or reproducibility; additional diagnostic or inspection outputs used only for sanity checks are not included.
