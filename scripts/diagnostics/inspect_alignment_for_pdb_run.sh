@@ -1,4 +1,4 @@
-python 99.1_inspect_alignment_for_pdb.py \
+python inspect_alignment_for_pdb.py \
   --folder Kinase_Type_III \
   --pdb 1s9j \
   --plm-thr 0.75 \
