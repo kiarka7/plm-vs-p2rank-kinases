@@ -4,7 +4,7 @@
 
 What this does
 --------------
-- Loads a finetuned PLM (PyTorch pickled object) and a tokenizer (HF).
+- Loads a finetuned PLM and a tokenizer.
 - Uses GOLD list (01.chain_gold_labels.json) to know exactly which (PDB, CHAIN) to predict.
 - Extracts chain sequences from local .cif files (author residue numbering).
 - Runs the model and writes one JSON with BOTH:
@@ -18,8 +18,6 @@ Robust bits
 - No dependency on Bio.PDB.Polypeptide.three_to_one (uses a safe map with PTMs).
 - Handles tokenizer special tokens; trims logits to length L when needed.
 - Quiet logging: prints only problems, periodic heartbeat, and a final summary.
-
-NEW:
 - Periodic checkpoints every N chains to OUTPUT_JSON.tmp
 - Resume from OUTPUT_JSON.tmp after crash/reboot (skips already processed keys)
 - Atomic writes to avoid corrupted checkpoints
