@@ -1,5 +1,0 @@
-[Kinase_Type_ALLO] OK used_records=87 pairs=28424 dropped=587
-[Kinase_Type_I] OK used_records=405 pairs=130039 dropped=7193
-[Kinase_Type_I.5] OK used_records=117 pairs=35807 dropped=658
-[Kinase_Type_II] OK used_records=65 pairs=19212 dropped=485
-[Kinase_Type_III] OK used_records=30 pairs=8849 dropped=264
