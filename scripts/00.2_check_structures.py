@@ -25,7 +25,7 @@ def parse_args():
     p.add_argument(
         "--excel",
         required=True,
-        help="Path to Excel file (e.g. Kinase_Type_III/Kinase_Ligands_Type III.xlsx)",
+        help="Path to Excel file (e.g. Kinase_Type_I/Kinase_Ligands_Type I.xlsx)",
     )
     p.add_argument(
         "--sheet",
@@ -39,7 +39,7 @@ def parse_args():
     p.add_argument(
         "--struct-dir",
         required=True,
-        help="Directory where .cif files are stored (e.g. Kinase_Type_III/structures)",
+        help="Directory where .cif files are stored (e.g. Kinase_Type_I/structures)",
     )
     return p.parse_args()
 
