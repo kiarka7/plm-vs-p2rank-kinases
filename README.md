@@ -65,7 +65,7 @@ Generated reports and figures are stored in:
 
 See `scripts/README.md` for a detailed description.
 
-## Expected directory layout
+### Expected directory layout
 
 All scripts assume a fixed directory layout and are designed to be run
 from the **repository root directory**.
@@ -91,7 +91,7 @@ plm-vs-p2rank-kinases/
 Scripts reference dataset folders using **relative paths** (e.g. `Kinase_Type_I/`)
 and therefore require this directory structure to be preserved. Running scripts from a different working directory is not supported unless paths inside the scripts are adjusted accordingly.
 
-## 3. Pipeline (quick run)
+### 3. Pipeline (quick run)
 
 The pipeline is executed **per dataset** (e.g. `Kinase_Type_I`). Dataset names are specified directly in individual scripts where required.
 
