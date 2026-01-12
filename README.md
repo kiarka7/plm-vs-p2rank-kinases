@@ -17,36 +17,17 @@ The analysis focuses on reproducibility and fair evaluation across protein–lig
 
 Python scripts implementing the full analysis pipeline:
 
-00.* – dowload structures from .xlsx input table in .cif
-01.* – construction of GOLD (ground-truth) residue labels
-02.* – P2Rank predictions
-03.* – PLM predictions
-04.* – evaluation (micro/macro metrics, MCC, AUROC, AUPR)
-05.* – figure generation and report
-06.* – prevalence calculations
+- `00.*` – dowload structures from .xlsx input table in .cif
+- `01.*` – construction of GOLD (ground-truth) residue labels
+- `02.*` – P2Rank predictions
+- `03.*` – PLM predictions
+- `04.*` – evaluation (micro/macro metrics, MCC, AUROC, AUPR)
+- `05.*` – figure, report generation
+- `06.*` – prevalence calculations
 
-Scripts are designed to operate per (PDB ID, chain ID) and align predictions using numeric residue indices. 
+Scripts are designed to operate per (PDB ID, chain ID) and align predictions using numeric residue indices. In addition to the necessary scripts, additional - control scripts are also uploaded here.
 
-### data: Kinase_Type_*/
-
-Per-dataset folders (e.g., Kinase_Type_I, Kinase_Type_II, …) contain:
-
-Input data table.  Eg.: Kinase_Ligands_Type I.xlsx
-
-01.chain_gold_labels_CLEAN.json
-Ground-truth residue labels derived from ligand annotations.
-
-02.p2rank_*
-Processed P2Rank outputs aligned to residue indices.
-
-03.plm_predictions_CLEAN.json
-PLM residue-level prediction outputs aligned to residue indices.
-
-04.eval_all_in_one_CLEAN.json
-Final evaluation metrics reported in the manuscript.
-
-
-## 3. Data layout
+### data/
 
 Each dataset lives in its own folder, e.g.:
 - `Kinase_Type_I/`
@@ -55,57 +36,98 @@ Each dataset lives in its own folder, e.g.:
 - `Kinase_Type_ALLO/`
 - `Kinase_Type_I.5/`
 
-Expected files per dataset:
+Expected essential files per dataset:
 - `Kinase_Ligands_*.xlsx` (source table; original KinCoRe / KinCoRe-UNQ export)
-- `01.chain_gold_labels_CLEAN.json` (generated)
-- `p2rank_predictions/**/_predictions.csv` (P2Rank outputs; generated)
-- `02.p2rank_rank1_map.json` (generated)
+- `structures/*.cif` (generated)
+- `01.chain_gold_labels_CLEAN.json` (generated; ground-truth residue labels derived from ligand annotations.)
+- `p2rank_predictions/*_predictions.csv` (generated)
+- `02.chain_p2rank_labels.json` (generated; processed P2Rank outputs aligned to residue indices.)
+- `02.p2rank_rank1_map.json` (generated; processed P2Rank outputs aligned to residue indices.)
 - `03.plm_predictions_CLEAN.json` (generated)
-- `04.eval_all_in_one_CLEAN.json` (generated)
-- reports and figures under `_combined_final/` (generated)
+- `03.chain_plm_labels.json` (generated; PLM residue-level prediction outputs aligned to residue indices.)
+- `04.eval_all_in_one_CLEAN.json` (generated; main evaluation)
+- `04.p2rank_oracle_chain_details_CLEAN.json` (generated)
+
+Reports and figures under in folder above: `_combined_final_CLEAN/` (generated)
 
 See `docs/DATA_LAYOUT.md` for details.
 
-### 4. Pipeline (quick run)
+## 3. Pipeline (quick run)
 
-Run per dataset (eg. Kinase_Type_I):
+Run per dataset (eg. Kinase_Type_I; you need to change the name for the dataset ussually in the script before run):
 
-bash 00.1_download_structures_run.sh (uses 00.1_download_structures.py)
-bash 00.2_check_structures_run.sh (uses 00.2_check_structures.py, not neccesary)
+```console
+bash 00.1_download_structures_run.sh 
+```
 
+```console
+bash 00.2_check_structures_run.sh
+```
+
+```console
 python 01.0_chain_gold_labels.py
-python 01.1_overview_per_pdb.py (not neccesary)
-python 01.2_gold_audit_summary.py (not neccesary)
-python 01y.probe_excel_only_pdbs.py (not neccesary)
+```
 
+```console
+python 01.1_overview_per_pdb.py 
+```
+
+```console
+python 01.2_gold_audit_summary.py 
+```
+
+```console
+python 01y.probe_excel_only_pdbs.py 
+```
+
+```console
 bash 02.0_run_p2rank_batch.sh
+```
+
+```console
 python 02.1_chain_p2rank_labels.py
+```
+
+```console
 python 02.2_build_p2rank_rank1_map.py
+```
 
+```console
 python 03.0_plm_predict_from_gold.py
+```
+
+```console
 python 03.1_chain_plm_labels.py
-python 03y.inspect_gold_vs_plm_keys.py (not neccesary)
+```
 
+```console
+python 03y.inspect_gold_vs_plm_keys.py 
+```
 
+```console
 python 04.0_evaluate_pipeline_all_in_one.py
+```
 
-bash 05.report_from_evaljson_plus_curves_run.sh (uses 05 report_from_evaljson_plus_curves_SVG.py)
+```console
+bash 05.report_from_evaljson_plus_curves_run.sh
+```
 
+```console
 python 06.0_prevalence.py
-python 06.1_prevalence_.py
+```
 
-### 5. Leakage Control and Evaluation Policy
+## 4. Leakage Control and Evaluation Policy
 
-To prevent information leakage and overestimation of performance: Sequence similarity control was applied before evaluation. Only one structure per protein was used in controlled analyses (SI). Evaluation in publication is performed per structure–chain, not per unique protein.
+Sequence similarity control was applied before evaluation (structures with > 30% were removed from the PLM train set). Evaluation in publication is performed per structure–chain (original KinCoRe). Only one structure per protein was used in controlled analyses (KinCoRe-UNQ export).
 
-### 6. Reproducibility
+## 5. Reproducibility
 
 To reproduce the reported results:
 
--Use the dataset folders.
+-Use the dataset folders with input excel tables.
 -Run scripts in numerical order (01 → 06).
 -Metrics and figures reported in the manuscript correspond directly to outputs of: 04.eval_all_in_one_CLEAN.json; figures generated by 05.report_from_evaljsons_plus_curves.py
 
-### 7. Notes
+## 6. Notes
 
 AUROC and AUPR are computed from raw probability scores, independent of threshold selection. Fixed and best-MCC operating points are described in the manuscript Methods section. Class prevalence reflects residue-level annotations across all protein–ligand complexes; prevalence for unique proteins was performed in controlled analyses.
