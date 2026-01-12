@@ -2,7 +2,7 @@
 """
 01.2_gold_audit_summary.py — end-to-end diagnostics for GOLD builder
 
-What this script does (fast, non-invasive):
+What this script does:
 - Reads:
     * Excel table with PDB(+optional chain) and Ligand columns
     * GOLD JSON produced by 01.chain_gold_labels.py
