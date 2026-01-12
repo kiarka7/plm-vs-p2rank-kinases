@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """
-02.2_build_p2rank_rank1_map.py  (more robust)
+02.2_build_p2rank_rank1_map.py
 
 Build per-(PDB, chain) RANK-1 pocket map from P2Rank outputs.
 
-Fixes vs v3:
 - Recursive discovery of *_predictions.csv (os.walk).
 - Robust PDB id inference:
     1) from filename (e.g., '4czt_predictions.csv', '4czt.cif_predictions.csv')
