@@ -1,0 +1,13 @@
+biopython
+matplotlib
+mmcif-pdbx
+numpy
+openpyxl
+pandas
+requests
+scikit-learn
+scipy
+tabulate
+torch
+tqdm
+transformers
