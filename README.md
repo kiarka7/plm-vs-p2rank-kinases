@@ -8,7 +8,7 @@ This repository and the accompanying Zenodo archive provide data and scripts use
 
 ## 1. Overview
 
-This project compares residue-level binding-site predictions produced by: a fine-tuned Protein Language Model (PLM), and the structure-based pocket prediction method **P2Rank** (version 2.5), across multiple kinase datasets (Type I, I.5, II, III, and Allosteric).
+This project compares residue-level binding-site predictions produced by: **a fine-tuned Protein Language Model (PLM)**, and the structure-based pocket prediction method **P2Rank** (version 2.5), across multiple kinase datasets (Type I, I.5, II, III, and Allosteric).
 
 The fine-tuned PLM model can be downloaded from this data storage: https://owncloud.cesnet.cz/index.php/s/8RSJqt60D2uWJNa
 
@@ -179,6 +179,16 @@ Metrics and figures reported in the manuscript correspond directly to:
 
 Structure files are not archived to avoid data duplication;
 all required structures can be retrieved programmatically using the provided scripts.
+
+### PLM model
+
+The fine-tuned protein language model (PLM) used for inference
+is **not stored directly in this repository or in the accompanying Zenodo archive**.
+The model is publicly available from the original repository of the model authors
+
+To reproduce PLM inference from scratch, users should download the model
+checkpoint from the link above and place it according to the instructions
+in `03.0_plm_predict_from_gold.py`.
 
 ## 5. Notes
 
