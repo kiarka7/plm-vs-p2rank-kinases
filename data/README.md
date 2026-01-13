@@ -1,10 +1,11 @@
 # Data Availability
 
-Due to size limitations of GitHub, not outputs used in this study are stored directly in this repository.
+Due to size limitations of GitHub, no outputs used in this study are stored directly in this repository.
 
 ---
 ### Datasets
 The datasets, including:
+
 - residue-level GOLD annotations,
 - processed P2Rank outputs,
 - PLM raw predictions,
@@ -13,7 +14,7 @@ The datasets, including:
 
 are available via institutional data storage at:
 
-**[[UNIVERSITY SHAREPOINT LINK HERE](https://cunicz-my.sharepoint.com/:f:/g/personal/40001559_cuni_cz/IgBFFuT8WMGHQrGYNnq4ncp9ATPYrBBmPGa3gdEVuP57D50?e=QkmkY8)]**
+**[[Charles University storage](https://cunicz-my.sharepoint.com/:f:/g/personal/40001559_cuni_cz/IgBFFuT8WMGHQrGYNnq4ncp9ATPYrBBmPGa3gdEVuP57D50?e=QkmkY8)]**
 
 (access provided for review and archival purposes)
 
@@ -37,10 +38,8 @@ in the set of included structures.
 All scripts provided in the `scripts/` directory operate directly on
 the dataset folders (`Kinase_Type_I/`, `Kinase_Type_I.5/`,...).
 
-The only external input required to regenerate the datasets is the
-**original Excel table** listing protein–ligand structures.
-All subsequent processing steps (filtering, prediction mapping,
-evaluation, and reporting) are fully scripted and reproducible.
+The only external inputs required to regenerate the datasets are the
+original Excel tables availabel in each of the `Kinase_*` directories. These tables contain the protein–ligand information.
 
 The directory `_combined_final_CLEAN/`  (in the sharepoint link) contains aggregated figures and
 reports generated from the evaluation outputs.

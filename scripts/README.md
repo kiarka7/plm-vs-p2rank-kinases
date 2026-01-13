@@ -41,7 +41,7 @@ Wrapper script to run structure download in batch mode on a selected dataset.
 Edit paths to the Excel input and output directory as needed for each dataset.
 
 ### `00.2_check_structures.py`
-Validates downloaded CIF files, checks basic consistency,
+Validates downloaded mmCIF files, checks basic consistency,
 and reports missing or problematic structures.
 
 - Reads expected PDB IDs from the Excel input table.
@@ -157,7 +157,7 @@ canonical GOLD residue order for each (PDB ID, chain).
 Extracts the top-ranked (rank-1) P2Rank pocket for each structure and maps
 its residues to individual protein chains present in the GOLD annotations.
 
-- Robustly identifies PDB IDs from P2Rank prediction outputs,
+- identifies PDB IDs from P2Rank prediction outputs,
 - extracts the highest-ranked pocket (rank-1) and its residue set,
 - intersects rank-1 pocket residues with GOLD residue annotations,
 - reports coverage- and precision-like overlap statistics for diagnostic purposes.
@@ -167,7 +167,7 @@ its residues to individual protein chains present in the GOLD annotations.
 ## 03 – PLM predictions
 
 ### `03.0_plm_predict_from_gold.py`
-Runs predictions of a fine-tuned protein language model (PLM) on protein chains
+Runs predictions of a fine-tuned PLM on protein chains
 defined by the GOLD annotations.
 
 - Uses GOLD annotations only to determine which (PDB, chain) pairs to process,
